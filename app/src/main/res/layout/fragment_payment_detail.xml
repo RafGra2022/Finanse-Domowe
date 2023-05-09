@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.homebudget.scheduler.PaymentDetailFragment">
+
+    <TableLayout
+        android:id="@+id/payment_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minWidth="100dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/contractor"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:textIsSelectable="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/service"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:gravity="center"
+                android:textIsSelectable="true"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/account_number_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/account_number"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:gravity="center"
+                android:textIsSelectable="true"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/sum_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/sum"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:gravity="center"
+                android:visibility="visible"
+                android:textIsSelectable="true"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/amountTableRow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/previousPayment"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:background="@drawable/ic_baseline_chevron_left_24" />
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:gravity="center"
+                android:hint="kwota"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/nextPayment"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:layout_gravity="end"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_baseline_chevron_right_24" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/payment_detail"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/save"
+            android:backgroundTint="@color/green"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Zapisz" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/control_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/payment_detail"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/paid"
+            android:backgroundTint="@color/green"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Zapłacono" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_marginLeft="40dp"
+            android:backgroundTint="@color/orange"
+            android:minWidth="130dp"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Edytuj" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

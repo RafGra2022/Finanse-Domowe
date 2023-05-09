@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/item1"
+        android:icon="@drawable/ic_baseline_menu_24"
+        app:showAsAction="always"
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/add_contractor_menu"
+                android:icon="@drawable/ic_baseline_business_center_24"
+                android:title="Dodaj kontrahenta"
+                app:actionViewClass="android.widget.ImageButton"/>
+            <item
+                android:id="@+id/remove_contractor_menu"
+                android:icon="@drawable/ic_baseline_person_remove_24"
+                android:title="Usuń kontrahenta"
+                app:actionViewClass="android.widget.ImageButton" />
+        </menu>
+    </item>
+
+</menu>

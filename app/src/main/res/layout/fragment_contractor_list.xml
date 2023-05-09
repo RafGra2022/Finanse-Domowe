@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.homebudget.removecontractor.ContractorListFragment">
+
+   <TableLayout
+       android:id="@+id/contractor_list"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingTop="50dp"
+       android:paddingStart="30dp"
+       android:paddingEnd="30dp">
+       <TableRow
+           android:layout_marginBottom="20dp">
+           <TextView
+               android:text="Kontraktorzy:"
+               android:layout_weight="1"
+               android:textStyle="bold"
+               android:textColor="@color/green" />
+       </TableRow>
+       <TableRow>
+               <LinearLayout
+                   android:id="@+id/fragment_layout"
+                   android:layout_width="match_parent"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"/>
+       </TableRow>
+
+   </TableLayout>
+
+
+
+</FrameLayout>

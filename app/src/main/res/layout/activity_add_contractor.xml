@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.homebudget.addcontractor.AddContractorActivity">
+
+    <TableLayout
+        android:id="@+id/add_contractor_table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TableRow
+            android:gravity="center"
+            android:layout_width="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/input_form"
+                android:name="com.homebudget.addcontractor.InputFormFragment"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:layout="@layout/fragment_input_form" />
+        </TableRow>
+
+        <TableRow
+            android:gravity="center"
+            android:layout_width="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/add_contractor"
+                android:name="com.homebudget.addcontractor.AddContractorFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:layout="@layout/fragment_add_contractor" />
+        </TableRow>
+
+        <TableRow
+            android:gravity="center"
+            android:layout_width="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/edit_contractor"
+                android:visibility="gone"
+                android:name="com.homebudget.addcontractor.EditPaymentFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:layout="@layout/fragment_edit_payment" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

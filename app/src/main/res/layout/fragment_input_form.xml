@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.homebudget.addcontractor.InputFormFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:id="@+id/form_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColorHint="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/contractor_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:hint="Nazwa dostawcy"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/service_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:hint="Nazwa usługi"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/account_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:hint="Numer konta bankowego"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow android:id="@+id/payment_cycle_row">
+
+            <AutoCompleteTextView
+                android:id="@+id/payment_cycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:cursorVisible="false"
+                android:dropDownSelector="@color/red"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:hint="Cykl płatności"
+                android:textIsSelectable="false" />
+
+            <ImageView
+                android:id="@+id/dropdown_btn"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="70dp"
+                android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/payment_term"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:hint="Termin płatności" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <DatePicker
+                android:id="@+id/calendar_spinner"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/calendar_button"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/red"
+                android:text="OK"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </TableRow>
+    </TableLayout>
+</FrameLayout>
