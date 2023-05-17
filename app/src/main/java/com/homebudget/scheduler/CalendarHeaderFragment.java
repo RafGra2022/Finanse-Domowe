@@ -30,15 +30,6 @@ public class CalendarHeaderFragment extends Fragment {
     MonthsProvider monthsProvider = new MonthsProvider();
     TextView header;
 
-    public CalendarHeaderFragment(int year, int month, int months) {
-        this.year = year;
-        this.month = month;
-        this.monthsToSkip = months;
-    }
-
-    public CalendarHeaderFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,11 +79,11 @@ public class CalendarHeaderFragment extends Fragment {
             String date = monthsProvider.getMonth(month) + " " + (year);
             header.setText(date);
 
-            for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.UNPAID.getValue(), getContext())) {
-                calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
-            }
             for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.PAID.getValue(), getContext())) {
                 calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.GREEN));
+            }
+            for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.UNPAID.getValue(), getContext())) {
+                calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
             }
             getParentFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.calendar, calendarFragment, null).commit();
 
@@ -114,11 +105,11 @@ public class CalendarHeaderFragment extends Fragment {
             String date = monthsProvider.getMonth(month) + " " + (year);
             header.setText(date);
 
-            for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.UNPAID.getValue(), getContext())) {
-                calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
-            }
             for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.PAID.getValue(), getContext())) {
                 calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.GREEN));
+            }
+            for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.of(year, month, 1), PaymentStatus.UNPAID.getValue(), getContext())) {
+                calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
             }
 
             getParentFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.calendar, calendarFragment, null).commit();

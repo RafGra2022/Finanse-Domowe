@@ -1,6 +1,11 @@
 package com.homebudget.utils;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+
+import com.homebudget.repository.PaymentStatus;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -62,4 +67,5 @@ public class CustomCalendar {
         }
         return false;
     }
+
 }

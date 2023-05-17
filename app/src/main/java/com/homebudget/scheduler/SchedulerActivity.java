@@ -37,12 +37,13 @@ public class SchedulerActivity extends AppCompatActivity {
 
         CalendarFragment calendarFragment = new CalendarFragment();
 
-        for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.now(), PaymentStatus.UNPAID.getValue(), getApplicationContext())) {
-            calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
-        }
         for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.now(), PaymentStatus.PAID.getValue(), getApplicationContext())) {
             calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.GREEN));
         }
+        for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.now(), PaymentStatus.UNPAID.getValue(), getApplicationContext())) {
+            calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
+        }
+
         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.calendar, calendarFragment, null).commit();
         findViewById(R.id.payment_detail).setVisibility(View.GONE);
     }

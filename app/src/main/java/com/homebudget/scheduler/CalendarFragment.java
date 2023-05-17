@@ -190,12 +190,14 @@ public class CalendarFragment extends Fragment {
         if (now.getDayOfMonth() == i && now.getMonth().getValue() == month) {
             Button b = new Button(tl.getContext());
             b.setText(String.valueOf(i));
+            b.setPadding(3,3,3,3);
             b.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
             b.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
             return b;
         } else {
             Button b = new Button(tl.getContext());
             b.setText(String.valueOf(i));
+            b.setPadding(3,3,3,3);
             b.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
             return b;
         }
@@ -205,6 +207,7 @@ public class CalendarFragment extends Fragment {
         Button b = new Button(tl.getContext());
         b.setText(String.valueOf(i));
         b.setEnabled(false);
+        b.setPadding(3,3,3,3);
         b.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
         return b;
     }
