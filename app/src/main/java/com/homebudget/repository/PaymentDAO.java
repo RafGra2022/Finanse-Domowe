@@ -12,11 +12,11 @@ public interface PaymentDAO {
     @Insert
     void insert(PaymentEntity paymentEntity);
 
-    @Query("Update payment set amount = :amount where term = :term")
-    void updatePaymentValue(String amount, String term);
+    @Query("Update payment set amount = :amount where id = :id")
+    void updatePaymentValue(String amount, long id);
 
-    @Query("Update payment set status = :status where term = :term")
-    void updatePaymentStatus(String status, String term);
+    @Query("Update payment set status = :status where id = :id")
+    void updatePaymentStatus(String status, long id);
 
     @Query("Update payment set term = :term where id = :id")
     void updatePaymentTerm(Long id, String term);

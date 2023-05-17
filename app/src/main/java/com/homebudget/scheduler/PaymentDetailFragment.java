@@ -47,19 +47,20 @@ public class PaymentDetailFragment extends Fragment {
     private String date;
     private CalendarFragment calendarFragment;
     private TextView contractor;
-    private TextView  service;
-    private TextView  account;
-    private TextView  sum;
+    private TextView service;
+    private TextView account;
+    private TextView sum;
     private TableRow amountRow;
     private TableRow sumRow;
-    private TableRow accountRow;
     private LinearLayout buttonPanel;
     private Button save;
+    private Button previousPayment;
     private Button nextPayment;
     private Button paid;
     private Button edit;
     private EditText amount;
     private PaymentView paymentView;
+    private Integer paymentViewCounter = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class PaymentDetailFragment extends Fragment {
         sum = getView().findViewById(R.id.sum);
         amountRow = getView().findViewById(R.id.amountTableRow);
         sumRow = getView().findViewById(R.id.sum_row);
-        accountRow = getView().findViewById(R.id.account_number_row);
+        previousPayment = getView().findViewById(R.id.previousPayment);
         nextPayment = getView().findViewById(R.id.nextPayment);
         amount = getView().findViewById(R.id.amount);
         buttonPanel = getView().findViewById(R.id.control_panel);
@@ -96,7 +97,23 @@ public class PaymentDetailFragment extends Fragment {
         save.setOnClickListener(save());
         paid.setOnClickListener(paid());
         edit.setOnClickListener(edition());
-        loadToView();
+        previousPayment.setOnClickListener(previousPayment());
+        nextPayment.setOnClickListener(nextPayment());
+        loadToView(paymentViewCounter);
+    }
+
+    private View.OnClickListener previousPayment() {
+        return view -> {
+            paymentViewCounter--;
+            loadToView(paymentViewCounter);
+        };
+    }
+
+    private View.OnClickListener nextPayment() {
+        return view -> {
+            paymentViewCounter++;
+            loadToView(paymentViewCounter);
+        };
     }
 
     private View.OnClickListener edition() {
@@ -119,7 +136,7 @@ public class PaymentDetailFragment extends Fragment {
                     .setCancelable(false)
                     .setPositiveButton("Tak", (dialog, id) -> {
                         Runnable statusUpdate = () -> {
-                            AppDatabase.getDatabase(getContext()).paymentDAO().updatePaymentStatus(PaymentStatus.PAID.getValue(), date);
+                            AppDatabase.getDatabase(getContext()).paymentDAO().updatePaymentStatus(PaymentStatus.PAID.getValue(), dayPayments.get(paymentViewCounter).getId());
                         };
                         AppDatabase.getExecutorService().execute(statusUpdate);
                         Toast.makeText(getContext(), "Płatność potwierdzona", Toast.LENGTH_LONG).show();
@@ -130,7 +147,7 @@ public class PaymentDetailFragment extends Fragment {
                             calendar.setDayColor(dayToPay, ColorStateList.valueOf(Color.RED));
                         }
                         for (Integer dayToPay : ContractorObligation.getPaymentsInMonth(LocalDate.now(), PaymentStatus.PAID.getValue(), getContext())) {
-                            calendarFragment.setDayColor(dayToPay, ColorStateList.valueOf(Color.GREEN));
+                            calendar.setDayColor(dayToPay, ColorStateList.valueOf(Color.GREEN));
                         }
                         calendar.setDayColor(DateFormatter.formatStringToLocalDate(date).getDayOfMonth(), ColorStateList.valueOf(Color.GREEN));
                         getParentFragmentManager().beginTransaction().replace(R.id.calendar, calendar).commit();
@@ -149,31 +166,40 @@ public class PaymentDetailFragment extends Fragment {
     private View.OnClickListener save() {
         return view -> {
             String value = amount.getText().toString().replace(".", ",");
+            paymentView.setAmount(value);
+            sum.setText(value);
+            amount.setText("");
             Runnable update = () -> {
-                AppDatabase.getDatabase(getContext()).paymentDAO().updatePaymentValue(value, date);
+                AppDatabase.getDatabase(getContext()).paymentDAO().updatePaymentValue(value, dayPayments.get(paymentViewCounter).getId());
             };
             AppDatabase.getExecutorService().execute(update);
             Log.i("", "Payment value updated");
             amountRow.setVisibility(View.GONE);
             save.setVisibility(View.GONE);
-            sum.setVisibility(View.VISIBLE);
+            sumRow.setVisibility(View.VISIBLE);
         };
     }
 
-    private void loadToView() {
+    private void loadToView(Integer position) {
 
         if (dayPayments == null) {
             return;
-        }
-        if (dayPayments.size() > 1) {
-            nextPayment.setVisibility(View.VISIBLE);
-        }
-
-        Optional<PaymentView> paymentOptional = dayPayments.stream().findFirst();
-        if (paymentOptional.isPresent()) {
-            paymentView = paymentOptional.get();
+        }else if (dayPayments.size() > position) {
+            paymentView = dayPayments.get(position);
         } else {
             return;
+        }
+
+        if (isNextPayment(position)) {
+            nextPayment.setVisibility(View.VISIBLE);
+        }else{
+            nextPayment.setVisibility(View.INVISIBLE);
+        }
+
+        if(isPreviousPayment(position)){
+            previousPayment.setVisibility(View.VISIBLE);
+        }else{
+            previousPayment.setVisibility(View.INVISIBLE);
         }
 
         contractor.setText(paymentView.getContractor());
@@ -189,7 +215,6 @@ public class PaymentDetailFragment extends Fragment {
         } else {
             save.setVisibility(View.VISIBLE);
             amountRow.setVisibility(View.VISIBLE);
-            accountRow.setVisibility(View.GONE);
             sumRow.setVisibility(View.GONE);
             buttonPanel.setVisibility(View.GONE);
         }
@@ -201,5 +226,13 @@ public class PaymentDetailFragment extends Fragment {
 
     private boolean isPaid(PaymentView paymentView) {
         return paymentView.getStatus().equals(PaymentStatus.PAID.getValue());
+    }
+
+    private boolean isNextPayment(Integer position) {
+        return dayPayments.size() != position + 1;
+    }
+
+    private boolean isPreviousPayment(Integer position) {
+        return position !=0;
     }
 }

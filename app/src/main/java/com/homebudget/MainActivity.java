@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ComponentName serviceComponent = new ComponentName(getApplicationContext(), NotificationService.class);
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
         builder.setPersisted(true);
-        builder.setPeriodic(60 * 60 * 1000);
+        builder.setPeriodic(3*60 * 60 * 1000);
         JobScheduler jobScheduler = (JobScheduler) getApplicationContext().getSystemService(getApplicationContext().JOB_SCHEDULER_SERVICE);
         jobScheduler.schedule(builder.build());
     }
